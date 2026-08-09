@@ -1,0 +1,64 @@
+/*
+  Estilos exclusivos da página style-guide.html (documentação interna).
+  Não faz parte do design system do site — apenas organiza a visualização.
+*/
+
+.sg-header {
+  padding-block: 64px 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+.sg-header .container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.sg-header__logo { width: 48px; height: 48px; }
+
+.sg-section-title { margin: 8px 0 32px; }
+.sg-group-title { margin: 40px 0 20px; }
+
+.sg-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.sg-swatch-grid--dense { grid-template-columns: repeat(10, 1fr); }
+.sg-swatch { display: flex; flex-direction: column; gap: 8px; }
+.sg-swatch__color {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+.sg-swatch__color--bordered { border: 1px solid var(--color-border); }
+
+.sg-type-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sg-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.sg-card-demo { margin-bottom: 8px; }
+.sg-card-demo--single { max-width: 560px; }
+
+.sg-grid-demo { margin-top: 16px; }
+.sg-grid-col {
+  background: var(--color-surface-elevated);
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  padding: 16px 0;
+  text-align: center;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .sg-swatch-grid { grid-template-columns: repeat(3, 1fr); }
+  .sg-swatch-grid--dense { grid-template-columns: repeat(5, 1fr); }
+  .sg-type-row { flex-direction: column; gap: 4px; }
+}

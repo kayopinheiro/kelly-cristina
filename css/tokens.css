@@ -1,0 +1,99 @@
+/*
+  Kelly Cristina — Site
+  Design tokens extraídos do Figma (Desktop Bridge).
+  Fonte: instrucoes/projeto-guide.md
+*/
+
+:root {
+  /* ===== Cores — Brand ===== */
+  --color-brand-port-gore: #39406a;
+  --color-brand-deep-cobalt: #424769;
+  --color-brand-blue-ice: #7077a1;
+  --color-brand-creole-sauce: #ed8737;
+  --color-brand-water-baby: #5eb6cc;
+  --color-brand-tropical-holiday: #8dcecb;
+
+  /* ===== Cores — Neutros ===== */
+  --color-gray-50: #f3f4f6;
+  --color-gray-100: #dbdde2;
+  --color-gray-200: #caccd5;
+  --color-gray-300: #b1b5c1;
+  --color-gray-400: #a2a7b5;
+  --color-gray-500: #8b91a3;
+  --color-gray-600: #7e8494;
+  --color-gray-700: #636774;
+  --color-gray-800: #4c505a;
+  --color-gray-900: #3a3d44;
+
+  /* ===== Cores — Base ===== */
+  --color-white: #ffffff;
+  --color-dark: #0c0e13;
+
+  /* ===== Cores — Semânticas ===== */
+  --color-bg: var(--color-white);
+  --color-text: var(--color-dark);
+  --color-text-muted: var(--color-gray-600);
+  --color-border: var(--color-gray-200);
+  --color-surface-elevated: var(--color-gray-50);
+
+  /* ===== Tipografia ===== */
+  --font-family: "Helvetica Neue", -apple-system, "Segoe UI", sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --font-size-display: 64px;
+  --font-size-h1: 48px;
+  --font-size-h2: 40px;
+  --font-size-h3: 32px;
+  --font-size-h4: 24px;
+  --font-size-h5: 20px;
+  --font-size-h6: 18px;
+  --font-size-large: 20px;
+  --font-size-medium: 18px;
+  --font-size-regular: 16px;
+  --font-size-small: 14px;
+  --font-size-tiny: 12px;
+  --font-size-button: 16px;
+  --font-size-overline: 12px;
+
+  --line-height-display: 1.1;
+  --line-height-h1: 1.15;
+  --line-height-h2: 1.2;
+  --line-height-h3: 1.25;
+  --line-height-h4: 1.3;
+  --line-height-h5: 1.35;
+  --line-height-h6: 1.4;
+  --line-height-body: 1.5;
+
+  /* ===== Grid & Espaçamento (desktop) ===== */
+  --container-max: 1440px;
+  --grid-columns: 12;
+  --grid-gutter: 24px;
+  --section-margin-x: 80px;
+
+  /* ===== Raio & Sombra ===== */
+  --radius-pill: 999px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-elevated: 0 8px 24px -8px rgba(57, 64, 106, 0.18), 0 2px 6px -2px rgba(57, 64, 106, 0.12);
+  --shadow-floating: 0 20px 48px -12px rgba(57, 64, 106, 0.24), 0 6px 16px -4px rgba(57, 64, 106, 0.16);
+
+  /* ===== Transições ===== */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.4s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-margin-x: 24px;
+    --font-size-display: 40px;
+    --font-size-h1: 32px;
+    --font-size-h2: 28px;
+    --font-size-h3: 24px;
+  }
+}

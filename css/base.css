@@ -1,0 +1,153 @@
+/*
+  Kelly Cristina — Site
+  Reset + componentes compartilhados entre todas as páginas
+  (botões, tags, cards, tipografia utilitária, grid).
+  Importar depois de css/tokens.css.
+*/
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+/* ===== Layout ===== */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--section-margin-x);
+}
+
+.section {
+  padding-block: 120px;
+}
+.section--light { background: var(--color-bg); }
+.section--tint { background: var(--color-surface-elevated); }
+.section--dark { background: var(--color-brand-port-gore); color: var(--color-white); }
+
+/* ===== Tipografia ===== */
+.text-display { font-size: var(--font-size-display); font-weight: var(--font-weight-medium); line-height: var(--line-height-display); letter-spacing: -0.01em; }
+.text-h1 { font-size: var(--font-size-h1); font-weight: var(--font-weight-medium); line-height: var(--line-height-h1); letter-spacing: -0.01em; }
+.text-h2 { font-size: var(--font-size-h2); font-weight: var(--font-weight-medium); line-height: var(--line-height-h2); letter-spacing: -0.01em; }
+.text-h3 { font-size: var(--font-size-h3); font-weight: var(--font-weight-medium); line-height: var(--line-height-h3); }
+.text-h4 { font-size: var(--font-size-h4); font-weight: var(--font-weight-medium); line-height: var(--line-height-h4); }
+.text-h5 { font-size: var(--font-size-h5); font-weight: var(--font-weight-medium); line-height: var(--line-height-h5); }
+.text-h6 { font-size: var(--font-size-h6); font-weight: var(--font-weight-medium); line-height: var(--line-height-h6); }
+.text-large { font-size: var(--font-size-large); font-weight: var(--font-weight-regular); }
+.text-medium { font-size: var(--font-size-medium); font-weight: var(--font-weight-regular); }
+.text-regular { font-size: var(--font-size-regular); font-weight: var(--font-weight-regular); }
+.text-small { font-size: var(--font-size-small); font-weight: var(--font-weight-regular); }
+.text-tiny { font-size: var(--font-size-tiny); font-weight: var(--font-weight-regular); }
+.text-overline {
+  font-size: var(--font-size-overline);
+  font-weight: var(--font-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.text-muted { color: var(--color-text-muted); }
+
+/* ===== Botões ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--duration-fast) var(--ease-smooth);
+}
+
+.btn--primary {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+.btn--primary:hover { background: var(--color-gray-800); }
+.btn--primary:active { background: var(--color-gray-900); }
+.btn--primary:focus-visible {
+  outline: 2px solid var(--color-brand-water-baby);
+  outline-offset: 2px;
+}
+
+.btn--secondary {
+  background: var(--color-white);
+  color: var(--color-dark);
+}
+.btn--secondary:hover { background: var(--color-gray-50); }
+.btn--secondary:active { background: var(--color-gray-100); }
+.btn--secondary:focus-visible {
+  outline: 2px solid var(--color-brand-water-baby);
+  outline-offset: 2px;
+}
+
+/* ===== Tag / Pill (overline badge) ===== */
+.tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* ===== Cards ===== */
+.card {
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+}
+
+.card--testimonial {
+  background: var(--color-brand-port-gore);
+  color: var(--color-white);
+  padding: 48px;
+  border-radius: var(--radius-lg);
+}
+.card--testimonial .card__quote-mark {
+  font-size: 48px;
+  color: var(--color-brand-blue-ice);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.card--testimonial .card__author {
+  margin-top: 24px;
+  color: var(--color-gray-200);
+}
+
+.card--post {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--duration-base) var(--ease-smooth),
+              box-shadow var(--duration-base) var(--ease-smooth);
+}
+.card--post:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+.card--post img { aspect-ratio: 16/10; object-fit: cover; }
+.card--post__body { padding: 24px; }
+
+/* ===== Grid utilitário ===== */
+.grid { display: grid; gap: var(--grid-gutter); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-12 { grid-template-columns: repeat(12, 1fr); }
+
+@media (max-width: 768px) {
+  .section { padding-block: 64px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}

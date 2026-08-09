@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide — Kelly Cristina</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style-guide.css">
+</head>
+<body>
+
+  <header class="sg-header">
+    <div class="container">
+      <img src="assets/logo.svg" alt="Kelly Cristina" class="sg-header__logo">
+      <div>
+        <p class="text-overline text-muted">Design System</p>
+        <h1 class="text-h1">Kelly Cristina — Site</h1>
+        <p class="text-medium text-muted">Style guide de referência: cores, tipografia, botões, cards e grid extraídos do Figma.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Cores ===== -->
+    <section class="section section--light" id="cores">
+      <div class="container">
+        <p class="text-overline text-muted">01</p>
+        <h2 class="text-h2 sg-section-title">Cores</h2>
+
+        <h3 class="text-h5 sg-group-title">Brand</h3>
+        <div class="sg-swatch-grid">
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-port-gore)"></span><span class="text-small">port gore<br><code>#39406a</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-deep-cobalt)"></span><span class="text-small">deep cobalt<br><code>#424769</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-blue-ice)"></span><span class="text-small">blue ice<br><code>#7077a1</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-creole-sauce)"></span><span class="text-small">creole sauce<br><code>#ed8737</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-water-baby)"></span><span class="text-small">water baby<br><code>#5eb6cc</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-brand-tropical-holiday)"></span><span class="text-small">tropical holiday<br><code>#8dcecb</code></span></div>
+        </div>
+
+        <h3 class="text-h5 sg-group-title">Neutros</h3>
+        <div class="sg-swatch-grid sg-swatch-grid--dense">
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-50)"></span><span class="text-tiny">50<br><code>#f3f4f6</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-100)"></span><span class="text-tiny">100<br><code>#dbdde2</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-200)"></span><span class="text-tiny">200<br><code>#caccd5</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-300)"></span><span class="text-tiny">300<br><code>#b1b5c1</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-400)"></span><span class="text-tiny">400<br><code>#a2a7b5</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-500)"></span><span class="text-tiny">500<br><code>#8b91a3</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-600)"></span><span class="text-tiny">600<br><code>#7e8494</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-700)"></span><span class="text-tiny">700<br><code>#636774</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-800)"></span><span class="text-tiny">800<br><code>#4c505a</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-gray-900)"></span><span class="text-tiny">900<br><code>#3a3d44</code></span></div>
+        </div>
+
+        <h3 class="text-h5 sg-group-title">Base</h3>
+        <div class="sg-swatch-grid">
+          <div class="sg-swatch"><span class="sg-swatch__color sg-swatch__color--bordered" style="background:var(--color-white)"></span><span class="text-small">white<br><code>#ffffff</code></span></div>
+          <div class="sg-swatch"><span class="sg-swatch__color" style="background:var(--color-dark)"></span><span class="text-small">dark<br><code>#0c0e13</code></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Tipografia ===== -->
+    <section class="section section--tint" id="tipografia">
+      <div class="container">
+        <p class="text-overline text-muted">02</p>
+        <h2 class="text-h2 sg-section-title">Tipografia</h2>
+        <p class="text-medium text-muted sg-group-title">Helvetica Neue — pesos Light / Regular / Medium / Bold</p>
+
+        <div class="sg-type-row"><span class="text-display">Display 64</span><span class="text-tiny text-muted">64px · Medium · 110%</span></div>
+        <div class="sg-type-row"><span class="text-h1">Heading H1 48</span><span class="text-tiny text-muted">48px · Medium · 115%</span></div>
+        <div class="sg-type-row"><span class="text-h2">Heading H2 40</span><span class="text-tiny text-muted">40px · Medium · 120%</span></div>
+        <div class="sg-type-row"><span class="text-h3">Heading H3 32</span><span class="text-tiny text-muted">32px · Medium · 125%</span></div>
+        <div class="sg-type-row"><span class="text-h4">Heading H4 24</span><span class="text-tiny text-muted">24px · Medium · 130%</span></div>
+        <div class="sg-type-row"><span class="text-h5">Heading H5 20</span><span class="text-tiny text-muted">20px · Medium · 135%</span></div>
+        <div class="sg-type-row"><span class="text-h6">Heading H6 18</span><span class="text-tiny text-muted">18px · Medium · 140%</span></div>
+        <div class="sg-type-row"><span class="text-large">Text Large — Lorem ipsum dolor sit amet</span><span class="text-tiny text-muted">20px · Regular · 150%</span></div>
+        <div class="sg-type-row"><span class="text-medium">Text Medium — Lorem ipsum dolor sit amet</span><span class="text-tiny text-muted">18px · Regular · 150%</span></div>
+        <div class="sg-type-row"><span class="text-regular">Text Regular — Lorem ipsum dolor sit amet consectetur</span><span class="text-tiny text-muted">16px · Regular · 150%</span></div>
+        <div class="sg-type-row"><span class="text-small">Text Small — Lorem ipsum dolor sit amet consectetur</span><span class="text-tiny text-muted">14px · Regular · 150%</span></div>
+        <div class="sg-type-row"><span class="text-tiny">Text Tiny — Lorem ipsum dolor sit amet consectetur</span><span class="text-tiny text-muted">12px · Regular · 150%</span></div>
+        <div class="sg-type-row"><span class="text-overline">Overline label</span><span class="text-tiny text-muted">12px · uppercase · tracking 8%</span></div>
+      </div>
+    </section>
+
+    <!-- ===== Botões ===== -->
+    <section class="section section--light" id="botoes">
+      <div class="container">
+        <p class="text-overline text-muted">03</p>
+        <h2 class="text-h2 sg-section-title">Botões</h2>
+        <p class="text-medium text-muted sg-group-title">Passe o mouse / navegue com Tab para ver os estados hover, focus-visible e active.</p>
+
+        <div class="sg-btn-row">
+          <button class="btn btn--primary">Agende sua consulta agora</button>
+          <button class="btn btn--secondary" style="background:var(--color-surface-elevated)">Ver mais posts</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cards ===== -->
+    <section class="section section--tint" id="cards">
+      <div class="container">
+        <p class="text-overline text-muted">04</p>
+        <h2 class="text-h2 sg-section-title">Cards</h2>
+
+        <h3 class="text-h5 sg-group-title">Depoimento</h3>
+        <div class="sg-card-demo sg-card-demo--single">
+          <div class="card card--testimonial">
+            <div class="card__quote-mark">&ldquo;</div>
+            <p class="text-h6">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor massa ullamcorper integer aliquam non.</p>
+            <p class="text-small card__author">Fernanda</p>
+          </div>
+        </div>
+
+        <h3 class="text-h5 sg-group-title">Post do blog</h3>
+        <div class="sg-card-demo grid grid-3">
+          <div class="card card--post">
+            <img src="assets/images/img.png" alt="">
+            <div class="card--post__body">
+              <span class="tag text-tiny">Community platform for creators</span>
+              <p class="text-h6" style="margin:16px 0 8px">Lorem ipsum dolor sit amet consectetur.</p>
+              <p class="text-small text-muted">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Grid ===== -->
+    <section class="section section--light" id="grid">
+      <div class="container">
+        <p class="text-overline text-muted">05</p>
+        <h2 class="text-h2 sg-section-title">Grid</h2>
+        <p class="text-medium text-muted sg-group-title">Container 1440px · 12 colunas · gutter 24px · margem lateral 80px (desktop)</p>
+        <div class="grid grid-12 sg-grid-demo">
+          <div class="sg-grid-col">1</div><div class="sg-grid-col">2</div><div class="sg-grid-col">3</div>
+          <div class="sg-grid-col">4</div><div class="sg-grid-col">5</div><div class="sg-grid-col">6</div>
+          <div class="sg-grid-col">7</div><div class="sg-grid-col">8</div><div class="sg-grid-col">9</div>
+          <div class="sg-grid-col">10</div><div class="sg-grid-col">11</div><div class="sg-grid-col">12</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
