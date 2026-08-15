@@ -12,8 +12,9 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero" id="hero">
-    <img src="assets/images/bg-img-hero.png" alt="" class="hero__bg">
+    <img src="assets/images/hero-img.png" alt="" class="hero__bg">
     <div class="hero__overlay" aria-hidden="true"></div>
+    <canvas class="hero__smoke" aria-hidden="true"></canvas>
 
     <nav class="hero__nav">
       <a href="#" class="hero__brand">
@@ -39,8 +40,9 @@
       <img src="assets/icons/arrow-forward.svg" alt="" class="hero__scroll-icon">
     </button>
     <button class="hero__sound-toggle" aria-label="Ativar som">
-      <img src="assets/icons/volume-up.svg" alt="" class="hero__sound-icon">
+      <img src="assets/icons/volume-off.svg" alt="" class="hero__sound-icon">
     </button>
+    <audio id="hero-audio" src="assets/audios/hero-ambient.mp3" loop preload="none"></audio>
   </section>
 
   <!-- ===== Intro / manifesto ===== -->
@@ -90,9 +92,9 @@
   <section class="section section--light people" id="sobre">
     <div class="container people__inner">
       <img src="assets/images/img.png" alt="" class="people__float people__float--tl">
-      <img src="assets/images/img-2.png" alt="" class="people__float people__float--tr">
-      <img src="assets/images/img-3.png" alt="" class="people__float people__float--bl">
-      <img src="assets/images/img-cta.png" alt="" class="people__float people__float--br">
+      <img src="assets/images/img-3.png" alt="" class="people__float people__float--tr">
+      <img src="assets/images/img-2.png" alt="" class="people__float people__float--bl">
+      <img src="assets/images/img-1.png" alt="" class="people__float people__float--br">
 
       <div class="people__content">
         <img src="assets/images/ilustration-notion.png" alt="Ilustração de duas pessoas conversando" class="people__illustration">

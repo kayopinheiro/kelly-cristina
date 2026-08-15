@@ -12,6 +12,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  clip-path: inset(0px 0px round 0px);
+  transition: clip-path 0.7s var(--ease-smooth);
+}
+
+.hero.is-shrunk {
+  clip-path: inset(0px 10px round var(--radius-lg));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { transition: none; }
 }
 
 .hero__bg {
@@ -20,15 +30,36 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 60%;
   z-index: 0;
 }
+
+.hero__smoke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-smooth);
+}
+.hero__smoke.is-active { opacity: 1; }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(0, 86, 125, 0.5) 0%, rgba(0, 86, 125, 0) 50%);
+  background: linear-gradient(
+    180deg,
+    rgba(57, 64, 106, 0.58) 0%,
+    rgba(57, 64, 106, 0.42) 28%,
+    rgba(57, 64, 106, 0.32) 48%,
+    rgba(57, 64, 106, 0.14) 68%,
+    rgba(57, 64, 106, 0) 82%
+  );
 }
 
 .hero__nav {
@@ -97,10 +128,11 @@
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 16px rgba(12, 14, 19, 0.2);
 }
 
-.hero__heading { color: var(--color-white); }
-.hero__text { color: var(--color-gray-50); }
+.hero__heading { color: var(--color-white); text-shadow: 0 4px 32px rgba(12, 14, 19, 0.3); }
+.hero__text { color: var(--color-gray-50); text-shadow: 0 2px 20px rgba(12, 14, 19, 0.25); }
 
 .hero__scroll-hint {
   position: absolute;
@@ -139,7 +171,9 @@
   transition: background-color var(--duration-fast) var(--ease-smooth);
 }
 .hero__sound-toggle:hover { background: rgba(227, 221, 207, 0.32); }
+.hero__sound-toggle:active { background: rgba(227, 221, 207, 0.44); }
 .hero__sound-toggle:focus-visible { outline: 2px solid var(--color-brand-water-baby); outline-offset: 2px; }
+.hero__sound-toggle.is-playing { background: rgba(255, 255, 255, 0.26); border-color: rgba(255, 255, 255, 0.3); }
 .hero__sound-icon { width: 24px; height: 24px; }
 
 @media (max-width: 768px) {
@@ -231,8 +265,9 @@
 .approach__media {
   position: relative;
   aspect-ratio: 3/2;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
+  /* overflow visível de propósito: os slides de trás (escalados/deslocados
+     pelo pin no main.js) precisam "espiar" por baixo do slide ativo,
+     como no stack de cards do lassie.ai. */
 }
 .approach__media-img {
   position: absolute;
@@ -240,6 +275,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--radius-lg);
 }
 
 @media (max-width: 900px) {
@@ -288,9 +324,7 @@
 
 /* ===== Depoimentos ===== */
 .testimonials {
-  /* TODO: confirmar hex exato no Figma dev mode — cor não veio como variável nomeada,
-     aproximação visual a partir do tint de --color-brand-blue-ice */
-  background: #dcdefa;
+  background: #d3d9ff;
 }
 
 .testimonials__inner {
@@ -309,7 +343,7 @@
 
 /* ===== Blog / Posts ===== */
 .posts {
-  background: linear-gradient(180deg, #dcdefa 0%, var(--color-white) 30%);
+  background: linear-gradient(180deg, #d3d9ff 0%, var(--color-white) 30%);
 }
 
 .posts__inner {
