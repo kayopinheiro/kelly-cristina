@@ -10,6 +10,13 @@
 </head>
 <body>
 
+  <!-- Layer de fundo compartilhado: a cor real é controlada pelo GSAP
+       ScrollTrigger em js/main.js, interpolando entre as seções marcadas
+       com [data-bg-color] conforme o scroll (ver bloco "Transição de
+       fundo entre seções"). Sem JS/com prefers-reduced-motion, cada seção
+       mantém sua cor estática (CSS) e este layer fica sem efeito. -->
+  <div class="bg-transition-layer" aria-hidden="true"></div>
+
   <!-- ===== Hero ===== -->
   <section class="hero" id="hero">
     <img src="assets/images/hero-img.png" alt="" class="hero__bg">
@@ -89,7 +96,7 @@
   </section>
 
   <!-- ===== Sobre / Atendimento ===== -->
-  <section class="section section--light people" id="sobre">
+  <section class="section section--light people" id="sobre" data-bg-color="#ffffff">
     <div class="container people__inner">
       <img src="assets/images/img.png" alt="" class="people__float people__float--tl">
       <img src="assets/images/img-3.png" alt="" class="people__float people__float--tr">
@@ -106,22 +113,65 @@
   </section>
 
   <!-- ===== Depoimentos ===== -->
-  <section class="section testimonials" id="depoimentos">
+  <section class="section testimonials" id="depoimentos" data-bg-color="#d3d9ff">
     <div class="container testimonials__inner">
       <span class="tag">Community platform for creators</span>
-      <h2 class="text-h2" data-reveal="lines">Lorem ipsum dolor sit amet consectetur.</h2>
+      <h2 class="text-h2 testimonials__heading" data-reveal="lines">Lorem ipsum dolor sit amet consectetur.</h2>
 
-      <div class="card card--testimonial testimonials__card">
-        <div class="card__quote-mark">&ldquo;</div>
-        <p class="text-h6">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor massa ullamcorper integer aliquam non. Purus tincidunt quam sed cursus egestas ut ullamcorper sed. Duis ac tincidunt arcu ut.</p>
-        <p class="text-small card__author">Fernanda</p>
+      <!-- O stage ocupa a seção como uma camada acima do título. Durante o pin da seção,
+           os cards atravessam o centro de baixo para cima e passam sobre o heading. -->
+      <div class="testimonials__stage-wrap">
+        <!-- MOCK — substituir pelos depoimentos reais do Sanity (schema "testimonial") quando o CMS estiver configurado -->
+        <div class="testimonials__stage" data-sanity="testimonials">
+          <article class="testimonials__card">
+            <div class="testimonials__card-mark" aria-hidden="true">&ldquo;</div>
+            <img src="assets/images/avatar.webp" alt="" class="testimonials__avatar">
+            <p class="text-regular testimonials__quote">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor massa ullamcorper integer aliquam non.</p>
+            <div class="testimonials__author">
+              <p class="text-small testimonials__author-name">Fernanda</p>
+              <p class="text-tiny testimonials__author-role">Paciente</p>
+            </div>
+            <a href="#" class="testimonials__watch">
+              Ver depoimento de Fernanda
+              <img src="assets/icons/arrow-forward.svg" alt="" class="testimonials__watch-icon">
+            </a>
+          </article>
+
+          <article class="testimonials__card">
+            <div class="testimonials__card-mark" aria-hidden="true">&ldquo;</div>
+            <img src="assets/images/img-1.png" alt="" class="testimonials__avatar">
+            <p class="text-regular testimonials__quote">Purus tincidunt quam sed cursus egestas ut ullamcorper sed. Duis ac tincidunt arcu ut eget et dictumst a purus.</p>
+            <div class="testimonials__author">
+              <p class="text-small testimonials__author-name">Marcos Andrade</p>
+              <p class="text-tiny testimonials__author-role">Paciente</p>
+            </div>
+            <a href="#" class="testimonials__watch">
+              Ver depoimento de Marcos
+              <img src="assets/icons/arrow-forward.svg" alt="" class="testimonials__watch-icon">
+            </a>
+          </article>
+
+          <article class="testimonials__card">
+            <div class="testimonials__card-mark" aria-hidden="true">&ldquo;</div>
+            <img src="assets/images/img-2.png" alt="" class="testimonials__avatar">
+            <p class="text-regular testimonials__quote">Integer tortor tempus orci sit mattis lectus consequat vel consequat. Augue odio sit amet tempor massa ullamcorper.</p>
+            <div class="testimonials__author">
+              <p class="text-small testimonials__author-name">Camila Duarte</p>
+              <p class="text-tiny testimonials__author-role">Paciente</p>
+            </div>
+            <a href="#" class="testimonials__watch">
+              Ver depoimento de Camila
+              <img src="assets/icons/arrow-forward.svg" alt="" class="testimonials__watch-icon">
+            </a>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== Blog / Posts ===== -->
   <!-- MOCK — substituir pelos posts reais do Sanity (schema "post") quando o CMS estiver configurado -->
-  <section class="section posts" id="blog">
+  <section class="section posts" id="blog" data-bg-color="#ffffff">
     <div class="container posts__inner">
       <span class="tag">Community platform for creators</span>
       <h2 class="text-h2">Lorem ipsum dolor sit amet consectetur.</h2>
@@ -158,7 +208,7 @@
   </section>
 
   <!-- ===== Footer ===== -->
-  <footer class="footer">
+  <footer class="footer" data-bg-color="#ffffff">
     <div class="container">
       <div class="footer__banner">
         <img src="assets/images/img-cta.png" alt="" class="footer__banner-bg">

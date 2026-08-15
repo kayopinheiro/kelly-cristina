@@ -112,6 +112,233 @@ document.addEventListener("DOMContentLoaded", () => {
       .to(rightCol, { opacity: INACTIVE_OPACITY, y: -CAPTION_SHIFT, ease: "power1.in", duration: 0.4 }, 2.0)
       .to(leftCol, { opacity: 1, y: 0, ease: "power1.out", duration: 0.4 }, 2.4);
   });
+
+  // Sobre/Atendimento — as 4 fotos flutuantes surgem pequenas e giradas
+  // (scale 0.4 + leve rotação por foto, cada uma com seu ângulo) e crescem
+  // juntas, no mesmo tempo, até o tamanho/ângulo final na própria posição
+  // (transform-origin center, por isso o posicionamento em .people__float
+  // no CSS não muda) — todas se movendo em uníssono conforme a seção
+  // entra na viewport (ref: lassie.ai).
+  const peopleFloats = document.querySelectorAll(".people__float");
+  const FLOAT_START_ROTATION = { tl: -9, tr: 7, bl: 6, br: -8 };
+  peopleFloats.forEach((el) => {
+    const corner = el.className.match(/people__float--(\w+)/)?.[1];
+    const fromRotation = FLOAT_START_ROTATION[corner] ?? 0;
+    gsap.set(el, { scale: 0.4, opacity: 0, rotate: fromRotation, y: 24 });
+    gsap.to(el, {
+      scale: 1,
+      opacity: 1,
+      rotate: 0,
+      y: 0,
+      duration: 1.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".people",
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
+
+  // Depoimentos — o heading encolhe suavemente (scrub) conforme a seção
+  // entra. A opacidade não é controlada aqui: ela permanece em 1 até o fade
+  // final, evitando disputa entre dois ScrollTriggers sobre a visibilidade.
+  const testimonialsHeading = document.querySelector(".testimonials__heading");
+  const testimonialsTag = document.querySelector("#depoimentos .tag");
+  const testimonialIntro = [testimonialsTag, testimonialsHeading].filter(Boolean);
+  gsap.set(testimonialIntro, { autoAlpha: 1 });
+  if (testimonialsHeading) {
+    gsap.fromTo(
+      testimonialsHeading,
+      { scale: 1.18 },
+      {
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#depoimentos",
+          start: "top bottom",
+          end: "top 45%",
+          scrub: true,
+        },
+      }
+    );
+  }
+
+  // Depoimentos — a seção inteira fica presa para manter o título fixo no
+  // centro. Os cards vivem em uma camada acima e atravessam o título de
+  // baixo para cima. Enquanto o card atual pausa no centro, o topo do próximo
+  // já fica visível no rodapé; depois ambos sobem juntos na troca.
+  const testimonialSection = document.querySelector("#depoimentos");
+  const testimonialStage = document.querySelector(".testimonials__stage");
+  const testimonialSlides = gsap.utils.toArray(".testimonials__card");
+  if (testimonialSection && testimonialStage && testimonialSlides.length > 0) {
+    // Mantém aproximadamente 80–110px do próximo card aparecendo abaixo da
+    // viewport central, como pista visual de que a sequência continua.
+    const cardTravel = () =>
+      Math.max(window.innerHeight * 0.6, testimonialStage.offsetHeight * 1.15);
+
+    gsap.set(testimonialSlides, {
+      autoAlpha: 0,
+      scale: 0.92,
+      y: () => cardTravel(),
+      zIndex: 2,
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: testimonialSection,
+        start: "top top",
+        end: "+=" + Math.round(window.innerHeight * testimonialSlides.length * 1.25),
+        pin: testimonialSection,
+        scrub: 0.45,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // O título recua visualmente enquanto os cards ocupam o primeiro plano.
+    // A escala acompanha o mesmo progresso de scroll da entrada do 1º card.
+    if (testimonialsHeading) {
+      tl.to(
+        testimonialsHeading,
+        {
+          scale: () => (window.innerWidth <= 600 ? 0.82 : 0.72),
+          transformOrigin: "center center",
+          ease: "none",
+          duration: 0.9,
+        },
+        0
+      );
+    }
+
+    const firstSlide = testimonialSlides[0];
+    tl.set(firstSlide, { autoAlpha: 1, zIndex: 2 }, 0).to(
+      firstSlide,
+      {
+        scale: 1,
+        y: 0,
+        ease: "none",
+        duration: 0.9,
+      },
+      0
+    );
+
+    testimonialSlides.forEach((slide, i) => {
+      const next = testimonialSlides[i + 1];
+      // Ciclos quase contínuos: 0.9 de deslocamento + apenas 0.25 de leitura.
+      // O fade começa antes do centro e continua no começo da subida seguinte.
+      const centeredAt = 0.9 + i * 1.15;
+      const transitionAt = centeredAt + 0.25;
+      const fadeAt = Math.max(0, centeredAt - 0.15);
+
+      if (next) {
+        tl.set(next, { visibility: "visible", zIndex: 1 }, fadeAt)
+          .fromTo(
+            next,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              ease: "none",
+              duration: 0.75,
+              immediateRender: false,
+            },
+            fadeAt
+          )
+          .to(
+            slide,
+            {
+              scale: 0.92,
+              y: () => -cardTravel(),
+              ease: "none",
+              duration: 0.9,
+            },
+            transitionAt
+          )
+          .to(
+            next,
+            {
+              scale: 1,
+              y: 0,
+              ease: "none",
+              duration: 0.9,
+            },
+            transitionAt
+          )
+          .set(slide, { autoAlpha: 0, zIndex: 0 }, transitionAt + 0.9)
+          .set(next, { zIndex: 2 }, transitionAt + 0.9);
+      } else {
+        // Último card: dissolve enquanto sobe para entregar a composição
+        // suavemente à transição de fundo/entrada da próxima seção.
+        tl.to(
+          slide,
+          {
+            opacity: 0,
+            scale: 0.92,
+            y: () => -cardTravel(),
+            ease: "none",
+            duration: 0.9,
+          },
+          transitionAt
+        ).set(slide, { visibility: "hidden" }, transitionAt + 0.9);
+      }
+    });
+
+    // Quando o último card sai, título e tag também se dissolvem. Isso evita
+    // que o heading reapareça sozinho antes da entrada da próxima seção.
+    if (testimonialIntro.length) {
+      const lastCenteredAt = 0.9 + (testimonialSlides.length - 1) * 1.15;
+      const introExitAt = lastCenteredAt + 0.25;
+      tl.fromTo(
+        testimonialIntro,
+        { autoAlpha: 1 },
+        {
+          autoAlpha: 0,
+          ease: "none",
+          duration: 0.9,
+          immediateRender: false,
+        },
+        introExitAt
+      );
+    }
+  }
+
+  // Transição de fundo entre seções — a cor real vive em .bg-transition-layer
+  // (fixed, atrás de tudo); cada seção marcada com [data-bg-color] fica
+  // transparente e "empresta" sua cor para o layer. O scrub prende a
+  // interpolação ao progresso físico do scroll (sem inércia, reversível).
+  const bgLayer = document.querySelector(".bg-transition-layer");
+  const bgSections = gsap.utils.toArray("[data-bg-color]");
+  if (bgLayer && bgSections.length > 1) {
+    // backgroundImage some junto: .posts tem um gradiente estático no CSS
+    // (fallback sem JS) que, se não for zerado aqui, fica por cima do layer
+    // e cria a emenda dura no início da seção.
+    gsap.set(bgSections, { backgroundColor: "transparent", backgroundImage: "none" });
+    gsap.set(bgLayer, { backgroundColor: bgSections[0].dataset.bgColor });
+
+    bgSections.forEach((section, i) => {
+      if (i === 0) return; // primeira seção do fluxo: só fixa a cor base, sem transição de entrada
+
+      const fromColor = bgSections[i - 1].dataset.bgColor;
+      const toColor = section.dataset.bgColor;
+
+      gsap.fromTo(
+        bgLayer,
+        { backgroundColor: fromColor }, // cor da seção anterior
+        {
+          backgroundColor: toColor, // background principal desta seção (ex.: #d3d9ff em #depoimentos)
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%", // entrada: começa a se fundir pouco antes da seção tomar a tela
+            end: "top 15%", // seção em foco: cor final atingida e mantida até a próxima transição
+            scrub: true,
+          },
+        }
+      );
+      // saída para a próxima seção = início do próximo tween deste loop,
+      // mesma cor como ponto de partida — sem corte entre as duas transições
+    });
+  }
 });
 
 // ============================================================================
