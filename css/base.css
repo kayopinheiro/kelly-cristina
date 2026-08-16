@@ -5,6 +5,8 @@
   Importar depois de css/tokens.css.
 */
 
+@import url("./home.css");
+
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -138,7 +140,12 @@ ul { list-style: none; margin: 0; padding: 0; }
   transform: translateY(-4px);
   box-shadow: var(--shadow-elevated);
 }
-.card--post img { aspect-ratio: 16/10; object-fit: cover; }
+.card--post img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
 .card--post__body { padding: 24px; }
 
 /* ===== Grid utilitário ===== */
