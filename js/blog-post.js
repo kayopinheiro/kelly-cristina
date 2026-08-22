@@ -14,6 +14,8 @@ const elements = {
   body: document.querySelector("[data-post-body]"),
   relatedSection: document.querySelector("[data-related-section]"),
   relatedGrid: document.querySelector("[data-related-grid]"),
+  share: document.querySelector("[data-share]"),
+  shareFeedback: document.querySelector("[data-share-feedback]"),
 };
 
 const formatDate = (value) =>
@@ -64,9 +66,15 @@ const appendBlockChildren = (element, block) => {
 
 const renderPortableText = (blocks = []) => {
   const fragment = document.createDocumentFragment();
+  let openList = null;
+
+  const closeList = () => {
+    openList = null;
+  };
 
   blocks.forEach((block) => {
     if (block._type === "image" && block.imageUrl) {
+      closeList();
       const figure = document.createElement("figure");
       const image = document.createElement("img");
       image.src = block.imageUrl;
@@ -80,6 +88,20 @@ const renderPortableText = (blocks = []) => {
     }
 
     if (block._type !== "block") return;
+
+    if (block.listItem) {
+      const listTag = block.listItem === "number" ? "ol" : "ul";
+      if (!openList || openList.tagName.toLowerCase() !== listTag) {
+        openList = document.createElement(listTag);
+        fragment.append(openList);
+      }
+      const item = document.createElement("li");
+      appendBlockChildren(item, block);
+      openList.append(item);
+      return;
+    }
+
+    closeList();
 
     const tagByStyle = {
       h2: "h2",
@@ -125,6 +147,45 @@ const updateMetadata = (post) => {
   if (description) description.content = post.seo?.description || post.excerpt;
 };
 
+const SHARE_URL_BUILDERS = {
+  whatsapp: (url, title) => `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`,
+  facebook: (url) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+  x: (url, title) => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+  linkedin: (url) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+};
+
+let shareFeedbackTimeoutId;
+const showShareFeedback = (message) => {
+  elements.shareFeedback.textContent = message;
+  elements.shareFeedback.classList.add("is-visible");
+  window.clearTimeout(shareFeedbackTimeoutId);
+  shareFeedbackTimeoutId = window.setTimeout(() => {
+    elements.shareFeedback.classList.remove("is-visible");
+  }, 2500);
+};
+
+const setupShare = (post) => {
+  const url = window.location.href;
+  const title = post.title;
+
+  elements.share.querySelectorAll("[data-share-network]").forEach((button) => {
+    const build = SHARE_URL_BUILDERS[button.dataset.shareNetwork];
+    if (!build) return;
+    button.addEventListener("click", () => {
+      window.open(build(url, title), "_blank", "noopener,noreferrer,width=600,height=500");
+    });
+  });
+
+  elements.share.querySelector("[data-copy-link]")?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      showShareFeedback("Link copiado!");
+    } catch (error) {
+      showShareFeedback("Não foi possível copiar o link.");
+    }
+  });
+};
+
 const renderPost = (post) => {
   elements.heroImage.src = post.coverImage?.imageUrl || "assets/images/hero-img.png";
   elements.heroImage.alt = post.coverImage?.alt || "";
@@ -139,6 +200,7 @@ const renderPost = (post) => {
   elements.readingTime.textContent = `${post.readingTime || 5} min de leitura`;
   renderPortableText(post.body);
   updateMetadata(post);
+  setupShare(post);
 };
 
 const renderRelated = (posts) => {
