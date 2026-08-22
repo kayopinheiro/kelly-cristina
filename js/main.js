@@ -339,6 +339,52 @@ document.addEventListener("DOMContentLoaded", () => {
       // mesma cor como ponto de partida — sem corte entre as duas transições
     });
   }
+
+  // Footer CTA — registrado por último porque as seções anteriores criam
+  // pin-spacers. Assim suas coordenadas já incluem todo o scroll adicional.
+  // Somente a camada visual cresce; texto e botão permanecem no container.
+  const footerBanner = document.querySelector(".footer__banner");
+  const footerBannerVisual = document.querySelector(".footer__banner-visual");
+  const footerContainer = footerBanner?.closest(".container");
+  if (
+    footerBanner &&
+    footerBannerVisual &&
+    footerContainer &&
+    window.matchMedia("(min-width: 769px)").matches
+  ) {
+    const compactLeft = () => {
+      const styles = getComputedStyle(footerContainer);
+      return footerContainer.getBoundingClientRect().left + (parseFloat(styles.paddingLeft) || 0);
+    };
+
+    gsap.fromTo(
+      footerBannerVisual,
+      {
+        width: "100%",
+        height: 220,
+        x: 0,
+        y: 40,
+      },
+      {
+        width: () => document.documentElement.clientWidth - 20,
+        height: 300,
+        x: () => 10 - compactLeft(),
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top 88%",
+          end: "bottom bottom",
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+          refreshPriority: -1,
+        },
+      }
+    );
+
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
+  }
 });
 
 // ============================================================================
