@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conteúdos sobre saúde emocional, autoconhecimento e relacionamentos por Kelly Cristina.">
+  <title>Blog — Kelly Cristina</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body class="blog-page">
+  <header class="blog-header">
+    <nav class="hero__nav" aria-label="Navegação principal">
+      <a href="index.html" class="hero__brand" aria-label="Kelly Cristina — Página inicial">
+        <img src="assets/logo-full.svg" alt="Kelly Cristina S. De Lima — Psicóloga Clínica" class="hero__logo-full">
+      </a>
+      <ul class="hero__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#sobre">Sobre</a></li>
+        <li><a href="index.html#atendimento">Atendimento</a></li>
+        <li><a href="index.html#depoimentos">Depoimentos</a></li>
+      </ul>
+      <a href="index.html#atendimento" class="btn btn--secondary hero__cta-nav">Get started</a>
+    </nav>
+  </header>
+
+  <main class="blog-listing">
+    <section class="container blog-listing__hero">
+      <span class="tag">Conteúdos para cuidar de si</span>
+      <h1>Reflexões para uma vida com mais presença.</h1>
+      <p>Textos sobre saúde emocional, autoconhecimento e relações construídas com mais cuidado.</p>
+    </section>
+
+    <section class="container blog-catalog" aria-labelledby="blog-catalog-title">
+      <div class="blog-catalog__toolbar">
+        <div>
+          <p class="blog-catalog__overline" id="blog-catalog-title">Explore por tema</p>
+          <div class="blog-filters" data-blog-filters role="group" aria-label="Filtrar posts por categoria"></div>
+        </div>
+        <p class="blog-catalog__count" data-blog-count aria-live="polite"></p>
+      </div>
+
+      <div class="blog-grid" data-blog-grid aria-live="polite" aria-busy="true"></div>
+
+      <div class="blog-state blog-state--empty" data-blog-empty hidden>
+        <h2>Nenhum conteúdo encontrado.</h2>
+        <p>Escolha outra categoria para continuar explorando.</p>
+      </div>
+
+      <div class="blog-state blog-state--error" data-blog-error hidden>
+        <h2>Não foi possível carregar os conteúdos.</h2>
+        <p>Tente novamente em alguns instantes.</p>
+        <button type="button" class="btn btn--primary" data-blog-retry>Tentar novamente</button>
+      </div>
+
+      <div class="blog-catalog__actions">
+        <button type="button" class="btn btn--primary blog-load-more" data-blog-load-more hidden>
+          Carregar mais 9 posts
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="blog-footer">
+    <div class="container blog-footer__inner">
+      <p>© 2026 Kelly Cristina — Todos os direitos reservados</p>
+      <nav class="blog-footer__links" aria-label="Links do rodapé">
+        <a href="politica-de-privacidade.html">Política de privacidade</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module" src="js/blog.js"></script>
+</body>
+</html>

@@ -155,40 +155,15 @@
   </section>
 
   <!-- ===== Blog / Posts ===== -->
-  <!-- MOCK — substituir pelos posts reais do Sanity (schema "post") quando o CMS estiver configurado -->
+  <!-- Os 3 posts mais recentes são carregados do Sanity por js/home-posts.js -->
   <section class="section posts" id="blog" data-bg-color="#ffffff">
     <div class="container posts__inner">
       <span class="tag">Community platform for creators</span>
       <h2 class="text-h2">Lorem ipsum dolor sit amet consectetur.</h2>
 
-      <div class="grid grid-3 posts__grid" data-sanity="posts">
-        <article class="card card--post">
-          <img src="assets/images/img-3.png" alt="">
-          <div class="card--post__body">
-            <span class="tag text-tiny">Community platform for creators</span>
-            <h3 class="text-h6" style="margin:16px 0 8px">Lorem ipsum dolor sit amet consectetur.</h3>
-            <p class="text-small text-muted">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor…</p>
-          </div>
-        </article>
-        <article class="card card--post">
-          <img src="assets/images/img-2.png" alt="">
-          <div class="card--post__body">
-            <span class="tag text-tiny">Community platform for creators</span>
-            <h3 class="text-h6" style="margin:16px 0 8px">Lorem ipsum dolor sit amet consectetur.</h3>
-            <p class="text-small text-muted">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor…</p>
-          </div>
-        </article>
-        <article class="card card--post">
-          <img src="assets/images/img.png" alt="">
-          <div class="card--post__body">
-            <span class="tag text-tiny">Community platform for creators</span>
-            <h3 class="text-h6" style="margin:16px 0 8px">Lorem ipsum dolor sit amet consectetur.</h3>
-            <p class="text-small text-muted">Lorem ipsum dolor sit amet consectetur. Sed feugiat congue vel faucibus. Augue odio sit amet tempor…</p>
-          </div>
-        </article>
-      </div>
+      <div class="grid grid-3 posts__grid" data-sanity="posts" aria-live="polite" aria-busy="true"></div>
 
-      <button class="btn btn--primary posts__more">Ver mais posts</button>
+      <a href="blog.html" class="btn btn--primary posts__more">Ver mais posts</a>
     </div>
   </section>
 
@@ -218,5 +193,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/home-posts.js"></script>
 </body>
 </html>

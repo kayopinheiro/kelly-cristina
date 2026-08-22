@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artigo do blog de Kelly Cristina.">
+  <title>Blog — Kelly Cristina</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body class="blog-page blog-post-page">
+  <header class="blog-header">
+    <nav class="hero__nav" aria-label="Navegação principal">
+      <a href="index.html" class="hero__brand" aria-label="Kelly Cristina — Página inicial">
+        <img src="assets/logo-full.svg" alt="Kelly Cristina S. De Lima — Psicóloga Clínica" class="hero__logo-full">
+      </a>
+      <ul class="hero__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#sobre">Sobre</a></li>
+        <li><a href="index.html#atendimento">Atendimento</a></li>
+        <li><a href="index.html#depoimentos">Depoimentos</a></li>
+      </ul>
+      <a href="index.html#atendimento" class="btn btn--secondary hero__cta-nav">Get started</a>
+    </nav>
+  </header>
+
+  <main>
+    <article data-post-content aria-busy="true">
+      <header class="blog-article__hero">
+        <img src="assets/images/hero-img.png" alt="" class="blog-article__hero-image" data-post-hero-image>
+        <div class="blog-article__hero-overlay" aria-hidden="true"></div>
+        <div class="container blog-article__hero-content">
+          <a href="blog.html" class="blog-article__back">
+            <img src="assets/icons/arrow-forward.svg" alt="">
+            Voltar para o blog
+          </a>
+          <span class="tag" data-post-category>Carregando</span>
+          <h1 data-post-title>Carregando conteúdo…</h1>
+          <p class="blog-article__excerpt" data-post-excerpt></p>
+          <div class="blog-article__meta">
+            <div class="blog-article__author">
+              <img src="assets/images/avatar.webp" alt="" data-post-author-image>
+              <span data-post-author>Kelly Cristina</span>
+            </div>
+            <span aria-hidden="true">•</span>
+            <time data-post-date></time>
+            <span aria-hidden="true">•</span>
+            <span data-post-reading-time></span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container blog-article__layout">
+        <aside class="blog-article__aside">
+          <p>Compartilhe esta reflexão com alguém que possa se beneficiar dela.</p>
+          <a href="blog.html">Explorar outros conteúdos</a>
+        </aside>
+        <div class="blog-article__body" data-post-body></div>
+      </div>
+    </article>
+
+    <section class="blog-post-error" data-post-error hidden>
+      <div class="container">
+        <span class="tag">Conteúdo indisponível</span>
+        <h1>Este post não foi encontrado.</h1>
+        <p>Ele pode ter sido removido ou o endereço está incorreto.</p>
+        <a href="blog.html" class="btn btn--primary">Voltar para o blog</a>
+      </div>
+    </section>
+
+    <section class="blog-related" data-related-section hidden>
+      <div class="container">
+        <div class="blog-related__header">
+          <span class="tag">Continue explorando</span>
+          <h2>Outras reflexões para você.</h2>
+        </div>
+        <div class="blog-grid" data-related-grid></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="blog-footer">
+    <div class="container blog-footer__inner">
+      <p>© 2026 Kelly Cristina — Todos os direitos reservados</p>
+      <nav class="blog-footer__links" aria-label="Links do rodapé">
+        <a href="politica-de-privacidade.html">Política de privacidade</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module" src="js/blog-post.js"></script>
+</body>
+</html>
