@@ -68,9 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = Array.from(media.querySelectorAll("[data-stack-slide]")).sort(
       (a, b) => Number(a.dataset.stackSlide) - Number(b.dataset.stackSlide)
     );
-    const leftCol = row.querySelector(".approach__col--left");
-    const rightCol = row.querySelector(".approach__col--right");
-    if (slides.length < 3) return;
+    // Legenda A e C dividem o slot esquerdo (imagem 1 e imagem 3); legenda B
+    // é o slot direito (imagem 2) — ver overlap em CSS (.approach__caption).
+    const captionA = row.querySelector('[data-caption="a"]');
+    const captionB = row.querySelector('[data-caption="b"]');
+    const captionC = row.querySelector('[data-caption="c"]');
+    if (slides.length < 3 || !captionA || !captionB || !captionC) return;
 
     const SCALE = [1, 0.92, 0.84];
     const Y_PERCENT = [0, 8, 16];
@@ -80,8 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
       gsap.set(slide, { scale: SCALE[i], yPercent: Y_PERCENT[i] });
     });
     const INACTIVE_OPACITY = 0; // só um texto visível por vez, trocando junto com a imagem
-    gsap.set(leftCol, { opacity: 1, y: 0 });
-    gsap.set(rightCol, { opacity: INACTIVE_OPACITY, y: CAPTION_SHIFT });
+    gsap.set(captionA, { opacity: 1, y: 0 });
+    gsap.set(captionB, { opacity: INACTIVE_OPACITY, y: CAPTION_SHIFT });
+    gsap.set(captionC, { opacity: INACTIVE_OPACITY, y: CAPTION_SHIFT });
 
     // Timeline: transição (0.8) → hold no card ativo (1.2) → transição (0.8).
     // O hold dá tempo do card do meio ficar parado antes de sair, em vez de
@@ -100,17 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Legenda em revezamento dentro da janela da imagem (0.8): a que sai
     // sobe e some na primeira metade (0 → 0.4), a próxima só começa a
     // entrar depois que a imagem já passou de 50% da transição (0.4 → 0.8).
+    // 3 legendas para 3 imagens: A (esquerda) → B (direita) → C (esquerda,
+    // reaproveita o slot de A via overlap em CSS, mas é um texto próprio).
     tl.to(slides[0], { yPercent: -112, ease: "power1.in", duration: 0.8 }, 0)
       .to(slides[1], { scale: SCALE[0], yPercent: Y_PERCENT[0], ease: "power1.out", duration: 0.8 }, 0)
       .to(slides[2], { scale: SCALE[1], yPercent: Y_PERCENT[1], ease: "power1.out", duration: 0.8 }, 0)
-      .to(leftCol, { opacity: INACTIVE_OPACITY, y: -CAPTION_SHIFT, ease: "power1.in", duration: 0.4 }, 0)
-      .to(rightCol, { opacity: 1, y: 0, ease: "power1.out", duration: 0.4 }, 0.4)
+      .to(captionA, { opacity: INACTIVE_OPACITY, y: -CAPTION_SHIFT, ease: "power1.in", duration: 0.4 }, 0)
+      .to(captionB, { opacity: 1, y: 0, ease: "power1.out", duration: 0.4 }, 0.4)
       .to(slides[1], { yPercent: -112, ease: "power1.in", duration: 0.8 }, 2.0)
       .to(slides[2], { scale: SCALE[0], yPercent: Y_PERCENT[0], ease: "power1.out", duration: 0.8 }, 2.0)
-      // segunda transição: legenda volta pra esquerda, mesmo revezamento.
-      .set(leftCol, { y: CAPTION_SHIFT }, 2.0)
-      .to(rightCol, { opacity: INACTIVE_OPACITY, y: -CAPTION_SHIFT, ease: "power1.in", duration: 0.4 }, 2.0)
-      .to(leftCol, { opacity: 1, y: 0, ease: "power1.out", duration: 0.4 }, 2.4);
+      .to(captionB, { opacity: INACTIVE_OPACITY, y: -CAPTION_SHIFT, ease: "power1.in", duration: 0.4 }, 2.0)
+      .to(captionC, { opacity: 1, y: 0, ease: "power1.out", duration: 0.4 }, 2.4);
   });
 
   // Sobre/Atendimento — as 4 fotos flutuantes surgem pequenas e giradas

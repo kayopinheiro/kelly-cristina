@@ -73,23 +73,35 @@
       </div>
 
       <div class="approach__row" data-stack-pin>
+        <!-- Lado esquerdo empilha 2 legendas (imagem 1 e imagem 3 do stack,
+             mesma técnica de overlap do stack de imagens abaixo) — só uma
+             fica visível por vez, controlado pelo GSAP em js/main.js. -->
         <div class="approach__col approach__col--left">
-          <span class="approach__icon" aria-hidden="true">
-            <img src="assets/icons/icon-image-02.svg" alt="">
-          </span>
-          <h3 class="text-h6">Escuta sem pressa</h3>
-          <p class="text-regular text-muted">Cada sessão começa por ouvir com atenção real, sem pressa e sem julgamento, para entender o que você está vivendo antes de qualquer coisa.</p>
+          <div class="approach__caption" data-caption="a">
+            <span class="approach__icon" aria-hidden="true">
+              <img src="assets/icons/ear.svg" alt="">
+            </span>
+            <h3 class="text-h6">Escuta sem pressa</h3>
+            <p class="text-regular text-muted">Cada sessão começa por ouvir com atenção real, sem pressa e sem julgamento, para entender o que você está vivendo antes de qualquer coisa.</p>
+          </div>
+          <div class="approach__caption" data-caption="c">
+            <span class="approach__icon" aria-hidden="true">
+              <img src="assets/icons/chat-lock.svg" alt="">
+            </span>
+            <h3 class="text-h6">Sigilo e confiança</h3>
+            <p class="text-regular text-muted">Tudo o que é dito em sessão fica entre nós. Um espaço seguro para você falar sem medo de julgamento, no seu tempo.</p>
+          </div>
         </div>
 
         <div class="approach__media">
-          <img src="assets/images/img.png" alt="" class="approach__media-img" data-stack-slide="2">
-          <img src="assets/images/img-2.png" alt="" class="approach__media-img" data-stack-slide="1">
-          <img src="assets/images/img-3.png" alt="" class="approach__media-img" data-stack-slide="0">
+          <img src="assets/images/abordagem-resultado.png" alt="" class="approach__media-img" data-stack-slide="2">
+          <img src="assets/images/abordagem-escuta.png" alt="" class="approach__media-img" data-stack-slide="1">
+          <img src="assets/images/abordagem-chegada.png" alt="" class="approach__media-img" data-stack-slide="0">
         </div>
 
-        <div class="approach__col approach__col--right">
+        <div class="approach__col approach__col--right" data-caption="b">
           <span class="approach__icon" aria-hidden="true">
-            <img src="assets/icons/icon-image-02.svg" alt="">
+            <img src="assets/icons/brain.svg" alt="">
           </span>
           <h3 class="text-h6">Base em evidência clínica</h3>
           <p class="text-regular text-muted">O acompanhamento parte de abordagens reconhecidas clinicamente, adaptadas ao seu momento e aos seus objetivos, sem fórmulas prontas.</p>

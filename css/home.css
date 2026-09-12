@@ -258,6 +258,16 @@
 }
 
 .approach__col { display: flex; flex-direction: column; gap: 12px; }
+/* Lado esquerdo empilha 2 legendas (imagem 1 e imagem 3) na mesma célula,
+   igual ao overlap do stack de imagens — só uma fica visível por vez via
+   opacity, controlado pelo GSAP. */
+.approach__col--left { display: grid; }
+.approach__caption {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .approach__icon {
   width: 48px;
   height: 48px;
@@ -333,8 +343,8 @@
   box-shadow: var(--shadow-floating);
 }
 .people__float--tl { width: 160px; height: 160px; top: 8%; left: 6%; }
-.people__float--tr { width: 260px; height: 260px; top: 2%; right: 8%; }
-.people__float--bl { width: 260px; height: 260px; bottom: 4%; left: 12%; }
+.people__float--tr { width: 260px; height: 260px; top: 2%; right: 3%; }
+.people__float--bl { width: 260px; height: 260px; bottom: 4%; left: 3%; }
 .people__float--br { width: 160px; height: 160px; bottom: 10%; right: 6%; }
 
 @media (max-width: 900px) {
@@ -420,8 +430,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 32px;
   width: 100%;
+  flex: 1;
 }
 
 .testimonials__quote {
